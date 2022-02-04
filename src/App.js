@@ -1,23 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
+// import counter from "./components/Counter";
 
 function App() {
+  const [tab, setTab] = useState([]);
+
+  const handleClick = () => {
+    // Créer une copie de tab
+    const newTab = [...tab];
+
+    newTab.push(
+      <p>Counter</p>,
+      <button onClick={handleClickPlus}>+</button>,
+      <button onClick={handleClickReset}>reset</button>,
+      <button onClick={handleClickMinos}>-</button>
+    );
+
+    setTab(newTab);
+  };
+
+  const handleClickPlus = () => {};
+  const handleClickReset = () => {};
+  const handleClickMinos = () => {};
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <button onClick={handleClick}>Add Counter</button>
+
+      <div className="cl-counter">
+        {tab.map((elem, index) => {
+          return <div>{elem}</div>;
+        })}
+
+        <div>
+          <p>Counter</p>
+        </div>
+        <div>
+          <button onClick={handleClickPlus}>+</button>
+        </div>
+        <div>
+          <button onClick={handleClickReset}>reset</button>
+        </div>
+        <div>
+          <button onClick={handleClickMinos}>-</button>
+        </div>
+      </div>
     </div>
   );
 }
